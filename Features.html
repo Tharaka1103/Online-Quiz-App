@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - QuizApp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --apple-blur: rgba(255, 255, 255, 0.72);
+            --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        body {
+            background-color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell;
+        }
+
+        .navbar {
+            background: var(--apple-blur) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: all 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .quiz-image {
+            border-radius: 18px;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .start-quiz-btn {
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            padding: 12px 24px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .start-quiz-btn:hover {
+            transform: scale(1.05);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 15px 0;
+            background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-content {
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap"></i> QuizApp
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <h1 class="text-center mb-5" style="font-weight: 700;">Choose Your Quiz Category</h1>
+        
+        <div class="row g-4">
+            <!-- Science Card -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="quiz-card">
+                    <img src="Assets/science1.jpg" alt="Science Quiz" class="quiz-image">
+                    <h3 class="category-title">Science Quiz</h3>
+                    <p class="text-muted">Explore the wonders of science through engaging questions about physics, chemistry, and biology.</p>
+                    <a href="Quiz.html?category=science" class="btn start-quiz-btn w-100">
+                        Start Quiz <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- History Card -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="quiz-card">
+                    <img src="Assets/history.jpg" alt="History Quiz" class="quiz-image">
+                    <h3 class="category-title">History Quiz</h3>
+                    <p class="text-muted">Travel through time with questions about world history, civilizations, and important events.</p>
+                    <a href="Quiz.html?category=history" class="btn start-quiz-btn w-100">
+                        Start Quiz <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Pop Culture Card -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="quiz-card">
+                    <img src="Assets/pop.jpg" alt="Pop Culture Quiz" class="quiz-image">
+                    <h3 class="category-title">Pop Culture Quiz</h3>
+                    <p class="text-muted">Test your knowledge of movies, music, celebrities, and current trends.</p>
+                    <a href="Quiz.html?category=popculture" class="btn start-quiz-btn w-100">
+                        Start Quiz <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Programming Card -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="quiz-card">
+                    <img src="Assets/programing.jpg" alt="Programming Quiz" class="quiz-image">
+                    <h3 class="category-title">Programming Quiz</h3>
+                    <p class="text-muted">Challenge yourself with coding concepts, algorithms, and programming languages.</p>
+                    <a href="Quiz.html?category=programming" class="btn start-quiz-btn w-100">
+                        Start Quiz <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center" style="background: var(--apple-blur); backdrop-filter: blur(10px);">
+        <p class="mb-0">© 2024 QuizApp. Designed with <i class="fas fa-heart text-danger"></i></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results - Status</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        :root {
+            --apple-bg: #f5f5f7;
+            --apple-card: #ffffff;
+            --apple-primary: #0071e3;
+            --apple-text: #1d1d1f;
+            --apple-border: rgba(0,0,0,0.1);
+        }
+        body {
+            background-color: var(--apple-bg);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell;
+            color: var(--apple-text);
+        }
+        .card {
+            border: none;
+            border-radius: 18px;
+            background: var(--apple-card);
+            box-shadow: 0 2px 15px var(--apple-border);
+        }
+        .btn {
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background-color: var(--apple-primary);
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0077ed;
+            transform: scale(1.02);
+        }
+        .form-control, .form-select {
+            border-radius: 12px;
+            border: 1px solid var(--apple-border);
+            padding: 12px;
+            background-color: #f5f5f7;
+        }
+        .form-control:focus, .form-select:focus {
+            box-shadow: 0 0 0 3px rgba(0,113,227,0.2);
+            border-color: var(--apple-primary);
+        }
+        .card-header {
+            background: linear-gradient(145deg, var(--apple-primary), #2986e5);
+            border-radius: 18px 18px 0 0 !important;
+            padding: 20px;
+        }
+        h2, h4, h5 {
+            font-weight: 600;
+        }
+        #certificateContainer {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: 12px;
+            padding: 30px;
+        }
+        .bi {
+            font-size: 1.1em;
+        }
+        #quizStats .card {
+            transition: transform 0.3s ease;
+        }
+        #quizStats .card:hover {
+            transform: translateY(-5px);
+        }
+        #answersTable {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .text-warning {
+            color: #ff9f00 !important;
+        }
+        .btn-success {
+            background-color: #34c759;
+            border: none;
+        }
+        .btn-success:hover {
+            background-color: #30bb54;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="text-center mb-4">
+                    <i class="bi bi-trophy-fill text-warning me-2"></i>Quiz Results
+                </h2>
+                
+                <h4 id="categoryTitle" class="text-center mb-4"></h4>
+                
+                <div id="quizStats" class="mb-5"></div>
+                
+                <div id="answersTable" class="mb-5"></div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0 text-white">Generate Your Certificate</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="certificateForm" class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="userName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="userEmail" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Certificate Size</label>
+                                <select class="form-select" id="certificateSize">
+                                    <option value="A4">A4 (210 × 297mm)</option>
+                                    <option value="A3">A3 (297 × 420mm)</option>
+                                    <option value="Letter">Letter (216 × 279mm)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">File Format</label>
+                                <select class="form-select" id="fileFormat">
+                                    <option value="png">PNG Image</option>
+                                    <option value="jpeg">JPEG Image</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Color Theme</label>
+                                <select class="form-select" id="colorTheme">
+                                    <option value="classic">Classic Blue</option>
+                                    <option value="modern">Modern Green</option>
+                                    <option value="elegant">Elegant Gold</option>
+                                </select>
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-primary" id="previewCertificate">
+                                <i class="bi bi-eye"></i> Preview Certificate
+                            </button>
+                        </div>
+
+                        <div id="certificatePreview" class="mt-4" style="display: none;">
+                            <div class="card">
+                                <div class="card-body" id="certificateContainer">
+                                </div>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-success" id="downloadCertificate">
+                                    <i class="bi bi-download"></i> Download Certificate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="index.html" class="btn btn-primary me-3">
+                        <i class="bi bi-house-fill"></i> Home
+                    </a>
+                    <a href="Quiz.html" class="btn btn-success">
+                        <i class="bi bi-arrow-repeat"></i> Try Another Quiz
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/Status.js"></script>
+</body>
+</html>
