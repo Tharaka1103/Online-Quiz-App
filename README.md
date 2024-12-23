@@ -1,7 +1,7 @@
 # 🎯 Online Quiz App
 
 <div align="center">
-  <img src="assets/quiz-banner.png" alt="Quiz App Banner" width="800px">
+  <img src="Assets/quizapp.png" alt="Quiz App Banner" width="800px">
 </div>
 
 ## 📝 Description
